@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion targetVersion
+    buildToolsVersion toolsVersion
+
+    defaultConfig {
+        applicationId "com.example.composableandroidtest"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion composeVersion
+        kotlinCompilerVersion kotlinVersion
+    }
+}
+
+dependencies {
+    //Kotlin
+    implementation libraries.kotlin_stdlib
+
+    //Android
+    implementation libraries.androidx_core
+    implementation libraries.app_compat
+    implementation libraries.material
+    implementation libraries.lifecycle_runtime
+    implementation libraries.lifecycle_view_model
+
+    //Coroutines
+    implementation libraries.coroutines
+    testImplementation libraries.coroutines_test
+
+    //Compose
+    implementation libraries.compose_ui
+    implementation libraries.compose_material
+    implementation libraries.compose_tooling
+
+    //Test
+    testImplementation libraries.junit
+    androidTestImplementation libraries.junit_ext
+    androidTestImplementation libraries.expresso
+
+    //Mockito
+    testImplementation libraries.mockito_core
+    testImplementation libraries.mockito_kotlin
+
+    //Retrofit
+    implementation libraries.retrofit
+    implementation libraries.retrofit_gson
+
+    //Koin
+    implementation libraries.koin_scope
+    implementation libraries.koin_view_model
+    implementation libraries.koin_fragment
+    testImplementation libraries.koin_test
+
+    //My Libraries
+    implementation libraries.kotlin_network
+}
